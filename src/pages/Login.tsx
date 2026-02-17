@@ -14,7 +14,7 @@ export default function Login() {
     const success = await login(email, password);
 
     if (success) {
-      navigate("/upload");
+      navigate("/documents");
     } else {
       setError("Invalid credentials");
     }

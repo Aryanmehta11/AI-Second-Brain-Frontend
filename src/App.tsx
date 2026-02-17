@@ -2,6 +2,7 @@ import {Routes,Route} from "react-router-dom"
 import Login from './pages/Login'
 import Upload from './pages/Upload'
 import Chat from './pages/Chat'
+import Documents from "./pages/Document"
 
 export default function App(){
   return (
@@ -9,6 +10,7 @@ export default function App(){
     <Route path="/" element={<Login/>}/>
     <Route path="/upload" element ={<Upload/>}/>
     <Route path="/chat" element={<Chat/>}/>
+    <Route path="/documents" element={<Documents/>}/>
     </Routes>
   )
 }

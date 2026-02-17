@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import { useSearchParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import API from "../api/api";
 
 type Message = {
@@ -10,10 +11,27 @@ type Message = {
 export default function Chat() {
   const [params] = useSearchParams();
   const fileId = params.get("file_id");
+  const { loading: authLoading } = useAuth();
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+  if (!fileId || authLoading) return;
+
+  const loadHistory = async () => {
+    try {
+      const res = await API.get(`/ai/history/${fileId}`);
+      setMessages(res.data);
+    } catch {
+      console.log("No history or unauthorized");
+    }
+  };
+
+  loadHistory();
+}, [fileId, authLoading]);
+
 
   const sendMessage = async () => {
     if (!input.trim() || !fileId) return;

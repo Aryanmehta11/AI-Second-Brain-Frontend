@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode,useEffect } from "react";
 import API, { setAuthToken } from "../api/api";
 
 type AuthContextType = {
@@ -11,6 +11,22 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
+  const [loading, setLoading] = useState(true);
+  // Restore session on refresh
+  useEffect(() => {
+    const stored = localStorage.getItem("token");
+
+    if (stored) {
+      setAuthToken(stored);
+      setToken(stored);
+    }
+
+    setLoading(false); // auth restored
+  }, [])
+
+
+  
+  
 
   const login = async (email: string, password: string) => {
     try {
