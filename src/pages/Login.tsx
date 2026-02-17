@@ -9,39 +9,46 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
+    setError("");
+
     const success = await login(email, password);
 
-    if (success) {
-      navigate("/documents");
-    } else {
-      setError("Invalid credentials");
-    }
+    setLoading(false);
+
+    if (success) navigate("/documents");
+    else setError("Invalid email or password");
   };
 
   return (
-    <div style={{ padding: 40 }}>
-      <h2>Login</h2>
+   <div className="page-center">
+    <div className="card">
+      <div className="card-title">AI Second Brain</div>
 
       <input
-        placeholder="Email"
+        className="input"
+        placeholder="Email address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <br /><br />
 
       <input
+        className="input"
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <br /><br />
 
-      <button onClick={handleLogin}>Login</button>
+      <button className="button" onClick={handleLogin}>
+        Sign In
+      </button>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <div className="error">{error}</div>}
     </div>
+  </div>
   );
 }
