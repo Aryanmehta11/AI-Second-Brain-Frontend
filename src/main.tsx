@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
 import React from 'react'
 import { AuthProvider } from './context/AuthContext.tsx'
-import "./styles/app.css";
+import "./styles/App.css";
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
