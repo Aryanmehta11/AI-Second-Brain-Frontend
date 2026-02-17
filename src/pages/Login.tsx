@@ -48,6 +48,15 @@ export default function Login() {
       </button>
 
       {error && <div className="error">{error}</div>}
+      <div style={{ marginTop: 12, opacity: 0.7 }}>
+          Don't have an account?{" "}
+          <span
+            style={{ color: "#60a5fa", cursor: "pointer" }}
+            onClick={() => navigate("/register")}
+          >
+            Register
+          </span>
+        </div>
     </div>
   </div>
   );
