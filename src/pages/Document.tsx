@@ -39,7 +39,12 @@ export default function Documents() {
 
   return (
     <div style={{ maxWidth: 600, margin: "40px auto", fontFamily: "sans-serif" }}>
+       <p style={{ color: "#aaa", marginTop: -10, marginBottom: 20 }}>
+        Click any document to start chatting with it.
+      </p>
+
       <h2>Your Documents</h2>
+      <br></br>
 
       <button onClick={() => navigate("/upload")}>
         Upload New Document
