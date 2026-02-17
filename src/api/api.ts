@@ -5,6 +5,10 @@ const API=axios.create({
 
 })
 
+const storedToken = localStorage.getItem("token");
+if (storedToken) {
+  API.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+}
 export const setAuthToken=(token:string|null)=>{
     if(token){
         API.defaults.headers.common["Authorization"]=`Bearer ${token}`
@@ -13,5 +17,16 @@ export const setAuthToken=(token:string|null)=>{
         return API.defaults.headers.common["Authorization"]
     }
 }
+
+API.interceptors.response.use(
+    (response)=>response,
+    (error)=>{
+        if(error.response?.status===401){
+            localStorage.removeItem("token")
+            window.location.href="/"
+        }
+        return Promise.reject(error)
+    }
+);
 
 export default API

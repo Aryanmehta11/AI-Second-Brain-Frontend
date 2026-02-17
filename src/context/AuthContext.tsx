@@ -62,3 +62,8 @@ export const useAuth = () => {
   if (!ctx) throw new Error("AuthContext not found");
   return ctx;
 };
+
+export const useAuthReady = () => {
+  const { loading } = useAuth();
+  return !loading;
+};

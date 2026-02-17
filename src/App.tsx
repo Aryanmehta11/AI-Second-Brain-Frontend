@@ -3,14 +3,15 @@ import Login from './pages/Login'
 import Upload from './pages/Upload'
 import Chat from './pages/Chat'
 import Documents from "./pages/Document"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 export default function App(){
   return (
     <Routes>
     <Route path="/" element={<Login/>}/>
-    <Route path="/upload" element ={<Upload/>}/>
-    <Route path="/chat" element={<Chat/>}/>
-    <Route path="/documents" element={<Documents/>}/>
+    <Route path="/upload" element ={<ProtectedRoute><Upload/></ProtectedRoute>}/>
+    <Route path="/chat" element={<ProtectedRoute><Chat/></ProtectedRoute>}/>
+    <Route path="/documents" element={<ProtectedRoute><Documents/></ProtectedRoute>}/>
     </Routes>
   )
 }
