@@ -85,6 +85,22 @@ export default function Chat() {
 
   return (
     <div style={{ padding: 40 }}>
+      {/* Back button */}
+      <button
+        onClick={() => window.history.back()}
+        style={{
+          marginBottom: 16,
+          padding: "6px 14px",
+          borderRadius: 8,
+          border: "1px solid #333",
+          background: "#111",
+          color: "white",
+          cursor: "pointer",
+          fontSize: 14,
+        }}
+      >
+        ← Back
+      </button>
       <h2>Chat</h2>
       <p>Document ID: {fileId}</p>
 
